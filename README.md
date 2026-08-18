@@ -4,6 +4,8 @@ A simple money transfer application built with **100% programmatic UIKit**, **Sw
 
 <p align="center">
   <img src="screenshots/send_money_screen.png" alt="Send Money Screen" width="300" />
+  <br/><br/>
+  <b><a href="https://drive.google.com/file/d/1o4o6CRJjtSiXGH42DIw4N0MLru7AKvgl/view?usp=share_link">Watch Video Demo</a></b>
 </p>
 
 ---
