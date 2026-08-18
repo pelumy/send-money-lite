@@ -20,11 +20,36 @@ final class BeneficiaryService {
     }
 
     func filter(_ beneficiaries: [Beneficiary], query: String) -> [Beneficiary] {
-        guard !query.trimmingCharacters(in: .whitespaces).isEmpty else { return beneficiaries }
-        return beneficiaries.filter {
-            $0.fullName.localizedCaseInsensitiveContains(query) ||
-            $0.bankName.localizedCaseInsensitiveContains(query) ||
-            $0.accountNumber.contains(query)
+        let trimmed = query.trimmingCharacters(in: .whitespaces).lowercased()
+        guard !trimmed.isEmpty else { return beneficiaries }
+
+        let matches = beneficiaries.filter {
+            $0.fullName.localizedCaseInsensitiveContains(trimmed) ||
+            $0.bankName.localizedCaseInsensitiveContains(trimmed) ||
+            $0.accountNumber.contains(trimmed)
+        }
+
+        return matches.sorted { lhs, rhs in
+            let lhsName = lhs.fullName.lowercased()
+            let rhsName = rhs.fullName.lowercased()
+
+            // Full name starts with query
+            let lhsNamePrefix = lhsName.hasPrefix(trimmed)
+            let rhsNamePrefix = rhsName.hasPrefix(trimmed)
+            if lhsNamePrefix != rhsNamePrefix { return lhsNamePrefix }
+
+            // Any word in full name starts with query (e.g. "Chen" in "David Chen")
+            let lhsWordMatch = lhsName.split(separator: " ").contains { $0.hasPrefix(trimmed) }
+            let rhsWordMatch = rhsName.split(separator: " ").contains { $0.hasPrefix(trimmed) }
+            if lhsWordMatch != rhsWordMatch { return lhsWordMatch }
+
+            // 3. Bank name starts with query (e.g. "Chase Bank")
+            let lhsBankPrefix = lhs.bankName.lowercased().hasPrefix(trimmed)
+            let rhsBankPrefix = rhs.bankName.lowercased().hasPrefix(trimmed)
+            if lhsBankPrefix != rhsBankPrefix { return lhsBankPrefix }
+
+            // Fallback: alphabetical
+            return lhs.fullName < rhs.fullName
         }
     }
 }

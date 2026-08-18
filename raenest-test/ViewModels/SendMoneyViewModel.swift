@@ -16,6 +16,7 @@ final class SendMoneyViewModel {
     private(set) var filteredBeneficiaries: [Beneficiary] = []
     private(set) var selectedBeneficiary: Beneficiary?
     private(set) var selectedCurrency: String
+    private(set) var searchQuery: String = ""
     private(set) var amountText: String = ""
     private(set) var amountError: String?
 
@@ -71,11 +72,13 @@ final class SendMoneyViewModel {
     }
 
     func search(_ query: String) {
+        searchQuery = query
         filteredBeneficiaries = beneficiaryService.filter(allBeneficiaries, query: query)
         onUpdate?()
     }
 
     func reset() {
+        searchQuery = ""
         amountText = ""
         amountError = nil
         selectedBeneficiary = nil

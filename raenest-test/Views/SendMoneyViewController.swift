@@ -224,9 +224,8 @@ final class SendMoneyViewController: UIViewController {
             amountField.text = viewModel.amountText
         }
 
-        if viewModel.selectedBeneficiary == nil && (searchBar.text?.isEmpty == false) &&
-            viewModel.filteredBeneficiaries.count == viewModel.allBeneficiaries.count {
-            searchBar.text = ""
+        if searchBar.text != viewModel.searchQuery {
+            searchBar.text = viewModel.searchQuery
         }
 
         continueButton.isEnabled = viewModel.isContinueEnabled
