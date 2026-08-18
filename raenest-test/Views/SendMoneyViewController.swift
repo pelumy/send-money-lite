@@ -211,11 +211,24 @@ final class SendMoneyViewController: UIViewController {
             currency: viewModel.selectedCurrency,
             beneficiary: beneficiary
         )
-        let vc = ConfirmationViewController(viewModel: confirmationViewModel)
-        navigationController?.pushViewController(vc, animated: true)
+
+        let confirmationVC = ConfirmationViewController(viewModel: confirmationViewModel)
+        confirmationVC.onTransferCompleted = { [weak self] in
+            self?.viewModel.reset()
+        }
+        navigationController?.pushViewController(confirmationVC, animated: true)
     }
 
     private func updateUI() {
+        if amountField.text != viewModel.amountText {
+            amountField.text = viewModel.amountText
+        }
+
+        if viewModel.selectedBeneficiary == nil && (searchBar.text?.isEmpty == false) &&
+            viewModel.filteredBeneficiaries.count == viewModel.allBeneficiaries.count {
+            searchBar.text = ""
+        }
+
         continueButton.isEnabled = viewModel.isContinueEnabled
         continueButton.alpha = viewModel.isContinueEnabled ? 1.0 : 0.5
 

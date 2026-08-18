@@ -74,4 +74,12 @@ final class SendMoneyViewModel {
         filteredBeneficiaries = beneficiaryService.filter(allBeneficiaries, query: query)
         onUpdate?()
     }
+
+    func reset() {
+        amountText = ""
+        amountError = nil
+        selectedBeneficiary = nil
+        filteredBeneficiaries = allBeneficiaries
+        onUpdate?()
+    }
 }

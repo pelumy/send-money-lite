@@ -88,8 +88,11 @@ final class ConfirmationViewController: UIViewController {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.color = .white
         indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
+
+    var onTransferCompleted: (() -> Void)?
 
     init(viewModel: ConfirmationViewModel) {
         self.viewModel = viewModel
@@ -102,6 +105,11 @@ final class ConfirmationViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupBindings()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        onTransferCompleted?()
     }
 
     private func setupUI() {
@@ -220,6 +228,7 @@ final class ConfirmationViewController: UIViewController {
     }
 
     @objc private func dismissFlow() {
+        onTransferCompleted?()
         navigationController?.popToRootViewController(animated: true)
     }
 }
