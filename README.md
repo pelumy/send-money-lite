@@ -2,6 +2,10 @@
 
 A simple money transfer application built with **100% programmatic UIKit**, **Swift Concurrency (`async/await`)**, and **MVVM architecture**.
 
+<p align="center">
+  <img src="screenshots/send_money_screen.png" alt="Send Money Screen" width="300" />
+</p>
+
 ---
 
 ## Architecture & Structure
