@@ -1,0 +1,39 @@
+disabled_rules:
+  - trailing_whitespace
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+
+included:
+  - raenest-test
+  - raenest-testTests
+
+excluded:
+  - Pods
+  - DerivedData
+  - .build
+
+line_length:
+  warning: 150
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+type_name:
+  min_length: 3
+  max_length: 50
+  excluded:
+    - raenest_testTests
+
+identifier_name:
+  min_length:
+    warning: 2
+  excluded:
+    - id
+    - i
+    - vc
+    - to
+    - vm
+
+reporter: "xcode"

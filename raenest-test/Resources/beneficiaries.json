@@ -1,0 +1,52 @@
+[
+    {
+        "id": "ben_001",
+        "fullName": "Samuel Okon",
+        "bankName": "Access Bank",
+        "accountNumber": "0123456789",
+        "currency": "NGN"
+    },
+    {
+        "id": "ben_002",
+        "fullName": "Sarah Jenkins",
+        "bankName": "Barclays UK",
+        "accountNumber": "GB29BARC20038765",
+        "currency": "GBP"
+    },
+    {
+        "id": "ben_003",
+        "fullName": "Alex Rivera",
+        "bankName": "Chase Bank",
+        "accountNumber": "9876543210",
+        "currency": "USD"
+    },
+    {
+        "id": "ben_004",
+        "fullName": "Elena Rostova",
+        "bankName": "Deutsche Bank",
+        "accountNumber": "DE89370400440532",
+        "currency": "EUR"
+    },
+    {
+        "id": "ben_005",
+        "fullName": "Amara Diallo",
+        "bankName": "GTBank",
+        "accountNumber": "0234567891",
+        "currency": "NGN"
+    },
+    {
+        "id": "ben_006",
+        "fullName": "David Chen",
+        "bankName": "Wells Fargo",
+        "accountNumber": "1122334455",
+        "currency": "USD"
+    },
+    {
+        "id": "ben_007",
+        "fullName": "Claire Dubois",
+        "bankName": "BNP Paribas",
+        "accountNumber": "FR763000601234",
+        "currency": "EUR"
+    }
+]
+
